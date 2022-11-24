@@ -1,13 +1,22 @@
-Resolving Bilibili’s major site incident with OpenResty XRay
+# Bilibili.com Case
 
-Yichun Zhang
+## Description
+**Type:** Runtime data type conversion software error
+**Component:** OpenResty
+**Language:** Lua
+
+"The Lua flame graph eventually located the culprit — a string-type zero value for a server weight (i.e., “0”) was inserted into the business logic’s configuration metadata, while the Lua API of OpenResty’s lua-resty-balancer library expected a numerical weight value. It thus led to infinite recursion and infinite loops."
+
+## Resolving Bilibili’s major site incident with OpenResty XRay
+
+**Author:** Yichun Zhang
 Check out how OpenResty XRay helps organizations troubleshoot issues and optimize the performance of their applications.
 
 
-LEARN MORE
+### LEARN MORE
 OpenResty Inc. used the proprietary product OpenResty XRay with its enhanced dynamic tracing technology to resolve a significant website crash of Bilibili.com, one of the busiest streaming websites in Asia. After hours of troubleshooting, the engineering team at Bilibili.com reached out to the OpenResty team for assistance. With OpenResty XRay, the OpenResty team quickly pinpointed the root cause and resolved the major incident in production.
 
-OpenResty XRay Robots
+### OpenResty XRay Robots
 
 A recent article entitled 2021.07.13 This is how we crashed by Bilibili.com summarized a significant site crash that occurred last year. This article sparked a lot of questions, discussions, and interest in the specifics. Therefore, we would like to take this opportunity to explain how OpenResty helped handle this incident and to introduce the tools we used to a larger audience that might be interested in the technical details.
 
@@ -17,7 +26,7 @@ Bilibili, China’s biggest streaming site
 
 Bilibili is a Shanghai-based company, also known as B-site. It has positioned itself as the number one anime streaming site; it is also one of the most popular video-sharing platforms in Asia.
 
-The incident
+### The incident
 
 Background: Bilibili developed its internal gateway system based on the Open Source OpenResty development framework.
 
@@ -27,7 +36,7 @@ CPU All 100%
 
 Bilibili is a commercial customer of OpenResty XRay. The engineering team at Bilibili contacted us for assistance in analyzing and resolving the problem in production after exhausting all of their internal resources.
 
-Process of resolution
+### Process of resolution
 
 Through the automatic sampling C-level CPU flame-graph in OpenResty XRay, we quickly identified that the Bilibili system’s OpenResty Nginx process was spending almost all of its CPU time executing Lua code.
 
@@ -47,7 +56,7 @@ It only took OpenResty XRay a few seconds to generate the flame graphs, which in
 
 The Lua flame graph eventually located the culprit — a string-type zero value for a server weight (i.e., “0”) was inserted into the business logic’s configuration metadata, while the Lua API of OpenResty’s lua-resty-balancer library expected a numerical weight value. It thus led to infinite recursion and infinite loops.
 
-Hardening after the incident
+### Hardening after the incident
 
 Bilibili ensures that no string-typed weight values for upstream servers will ever get written to the configuration data in the business logic code in the future.
 
@@ -55,7 +64,7 @@ The latest version of OpenResty XRay provides a new feature that prints the valu
 
 We have also explicitly hardened the open-source OpenResty lua-resty-balancer library against such API misuses, ensuring that any wrong weight values of incorrect data types will always be converted to numeric types.
 
-OpenResty XRay Services
+### OpenResty XRay Services
 
 OpenResty XRay is a non-invasive troubleshooting and analytic software utilizing enhanced proprietary dynamic tracing technology. With OpenResty XRay, companies can automatically perform in-depth analysis and monitoring on software built with open-source programming languages such as OpenResty, Nginx, LuaJIT, PHP, Python, Perl, Go, PostgreSQL, Redis, etc. To provide much greater analytics power to users, we are also adding support for more technology stacks, including Java, Ruby, etc. With OpenResty XRay, users can quickly identify and pinpoint performance, functional, and security issues to ensure the system’s stability in all environments.
 
@@ -65,7 +74,7 @@ In addition to Bilibili, OpenResty XRay has also successfully helped Zoom, Micro
 
 OpenResty Console Screenshot
 
-Closing
+### Closing
 
 The incident was perfectly resolved in the end. We appreciate Bilibili trusting our team and products throughout the process!
 
