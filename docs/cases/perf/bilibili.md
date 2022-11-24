@@ -1,11 +1,15 @@
 # Bilibili.com Case
+Bilibili, China’s biggest streaming and video sharing site. The incident happened with Bilibili's internal gateway systems which could not handle more requests and were running at 100% on CPU.
 
-## Description
-**Type:** Runtime data type conversion software error
+**Error:** Runtime data type conversion software error
+
 **Component:** OpenResty
+
 **Language:** Lua
 
-"The Lua flame graph eventually located the culprit — a string-type zero value for a server weight (i.e., “0”) was inserted into the business logic’s configuration metadata, while the Lua API of OpenResty’s lua-resty-balancer library expected a numerical weight value. It thus led to infinite recursion and infinite loops."
+**Type:** Poor performance, service outage
+
+**Synopsis:** "The Lua flame graph eventually located the culprit — a string-type zero value for a server weight (i.e., “0”) was inserted into the business logic’s configuration metadata, while the Lua API of OpenResty’s lua-resty-balancer library expected a numerical weight value. It thus led to infinite recursion and infinite loops."
 
 ## Resolving Bilibili’s major site incident with OpenResty XRay
 
