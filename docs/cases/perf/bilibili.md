@@ -1,11 +1,17 @@
 # Bilibili.com Case
 Bilibili, China’s biggest streaming and video sharing site. The incident happened with Bilibili's internal gateway systems which could not handle more requests and were running at 100% on CPU.
 
-**Error:** Runtime data type conversion software error
+**Entity:** Bilibili.com
+
+**Date:** July 2021, August 2022
+
+**Error:** Software runtime data type conversion error
 
 **Component:** OpenResty
 
-**Language:** Lua
+**Programming Language:** Lua
+
+**Operating System:** Unknown
 
 **Type:** Poor performance, service outage
 
@@ -99,3 +105,4 @@ As an avid open-source contributor, Yichun has contributed more than a million l
 
 # References 
 https://blog.openresty.com/en/bilibili-xray-incident/ 
+https://mp.weixin.qq.com/s/nGtC5lBX_Iaj57HIdXq3Qg 
