@@ -5,7 +5,7 @@ Bilibili, China’s biggest streaming and video sharing site. The incident happe
 
 **Date:** July 2021, August 2022
 
-**Error:** Software runtime data type conversion error
+**Error:** Software. Runtime data type conversion error
 
 **Component:** OpenResty
 
