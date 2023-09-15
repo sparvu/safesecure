@@ -1,4 +1,4 @@
-<img src="/docs/img/safe-secure2.png" width="85%" />
+<img src="/docs/img/safe-secure4.png" width="85%" />
 
 How to build and write better software. A short introduction to software design followed by real-case examples.
 
